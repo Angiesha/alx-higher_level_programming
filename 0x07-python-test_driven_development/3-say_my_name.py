@@ -17,16 +17,16 @@ Usage
 
 ::
 
-    >>> say_my_name("Bill Gates", "Jones II")
-    My name is Bill Gates Jones II
+    >>> say_my_name("Bill Gates", "Bennie")
+    My name is Bill Gates Bennie
 
 The parameter ```last_name``` is optional. If no last name is provided,
 an empty string is printed instead.
 
 ::
 
-    >>> say_my_name("Korej")
-    My name is Korej
+    >>> say_my_name("Angela")
+    My name is Angela
 
 Invalid Names
 =============
@@ -36,13 +36,13 @@ a TypeError is raised.
 
 ::
 
-    >>> say_my_name(6, "Rexton")
+    >>> say_my_name(6, "Ronaldo")
     Traceback (most recent call last):
     TypeError: first_name must be a string
 
 ::
 
-    >>> say_my_name("Angie", ["Jimin", "Jungkook", "Angie"])
+    >>> say_my_name("Cristiano", ["Jimin", "Jungkook", "Angie"])
     Traceback (most recent call last):
     TypeError: last_name must be a string
 
