@@ -1,71 +1,61 @@
 #!/usr/bin/python3
-"""define class Square"""
+
+"""Define a class Square (based on 5-square.py)."""
 
 
 class Square:
-    """Defines a square:"""
+    """Represent a square."""
 
     def __init__(self, size=0, position=(0, 0)):
-        """Initializer object"""
-
-        self.__size = size
-        self.__position = position
-
-    def area(self):
-        """return area of the Square in the atribute private __size"""
-
-        return self.__size ** 2
+        """Initialize a new Square.
+            Args:
+                size (int): The size of the new square.
+                position (int, int): The coordinate of the new square.
+        """
+        self.size = size
+        self.position = position
 
     @property
     def size(self):
-        """converts the private attribute self .__ size
-        into a readable variable in the
-        way self.size and in the same way as a public
-        attribute it is modifiable.
-        """
-
+        """Getter/Accessor function: Retrieves square size"""
         return self.__size
 
     @size.setter
     def size(self, value):
-        """assigns the value to the size variable"""
-
-        if type(value) is not int:
+        """Setter/Mutator function: Sets square size"""
+        if not isinstance(value, int):
             raise TypeError("size must be an integer")
         elif value < 0:
             raise ValueError("size must be >= 0")
         self.__size = value
 
-    def my_print(self):
-        """Print a square with size of self.__size
-        and if self.position[1] is greater than 0
-        print a line break and if size is less
-        than or equal to 0 print line break.
-        """
-
-        position = self.position[0]
-        size = self.size
-        [print('\n', end='') for _ in range(self.position[1])]
-
-        for _ in range(self.size):
-            for _ in range(position):
-                print(' ', end='')
-            print(size * '#')
-
     @property
     def position(self):
-        """makes the private attribute self
-        .__position a readable variable in
-        the way self.position and in the same
-        way that a public attribute is modifiable.
-        """
-
+        """Getter/Accessor function: Retrieves coordinate of square"""
         return self.__position
 
     @position.setter
     def position(self, value):
-        """assigns the value to the position variable"""
+        """Setter/Mutator function: Sets square size"""
+        if (not isinstance(value, tuple) or
+                len(value) != 2 or
+                not all(isinstance(num, int) for num in value) or
+                not all(num >= 0 for num in value)):
+            raise TypeError("position must be a tuple of 2 positive integer")
+        self.__position = value
 
-        if type(value) is not tuple or len(value) > 1:
-            raise TypeError("position must be a tuple of 2 positive integers")
-        self.position = value
+    def area(self):
+        """Returns the current square area."""
+        return (self.__size ** self.__size)
+
+    def my_print(self):
+        """Prints in stdout the square with the character '#'"""
+        if self.__size == 0:
+            print("")
+            return
+
+        [print("") for i in range(0, self.__position[1])]
+        for i in range(0, self.__size):
+            [print(" ", end="") for j in range(0, self.__position[0])]
+            [print("#", end="") for k in range(0, self.__size)]
+            print("")
